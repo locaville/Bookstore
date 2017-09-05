@@ -1,7 +1,23 @@
 package fi.haagahelia.okt.Bookstore.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import fi.haagahelia.okt.Bookstore.domain.BookRepository;
+
+@Entity
 public class Book {
 	
+	@Autowired
+	private BookRepository repository;
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
+	private long id;
 	private String title;
 	private String author;
 	private int year;
@@ -12,7 +28,7 @@ public class Book {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public Book(String title, String author, int year, String isbn, double price) {
 		super();
 		this.title = title;
@@ -20,6 +36,24 @@ public class Book {
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
+	}
+
+	public Book(long id, String title, String author, int year, String isbn, double price) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.year = year;
+		this.isbn = isbn;
+		this.price = price;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
