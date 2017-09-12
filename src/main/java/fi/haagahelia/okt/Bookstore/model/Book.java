@@ -12,8 +12,6 @@ import fi.haagahelia.okt.Bookstore.domain.BookRepository;
 @Entity
 public class Book {
 	
-	@Autowired
-	private BookRepository repository;
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
