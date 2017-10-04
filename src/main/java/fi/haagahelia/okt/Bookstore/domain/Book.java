@@ -1,4 +1,4 @@
-package fi.haagahelia.okt.Bookstore.model;
+package fi.haagahelia.okt.Bookstore.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

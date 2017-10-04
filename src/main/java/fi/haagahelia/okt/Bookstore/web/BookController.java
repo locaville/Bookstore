@@ -1,4 +1,4 @@
-package fi.haagahelia.okt.Bookstore.domain;
+package fi.haagahelia.okt.Bookstore.web;
 
 import java.util.List;
 
@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import fi.haagahelia.okt.Bookstore.model.Book;
+import fi.haagahelia.okt.Bookstore.domain.BookRepository;
+import fi.haagahelia.okt.Bookstore.domain.Book;
 
-@RestController
-
+@Controller
 public class BookController {
-
+	
 	@Autowired
 	private BookRepository repository;
 	
@@ -44,13 +44,19 @@ public class BookController {
 	}
 	
 	@RequestMapping(value="/booksjson")
-	public List<Book> allBooksJSON(){
+	public @ResponseBody List<Book> allBooksJSON(){
 		return (List<Book>) repository.findAll();
 	}
 	
 	@RequestMapping(value="/bookjson/{id}", method = RequestMethod.GET)
-	public Book oneBookJSON(@PathVariable("id") Long bookId) {
+	public @ResponseBody Book oneBookJSON(@PathVariable("id") Long bookId) {
 		return repository.findOne(bookId);
 	}
+	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
+	
 
 }

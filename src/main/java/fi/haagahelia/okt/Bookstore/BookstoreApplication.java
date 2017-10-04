@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import fi.haagahelia.okt.Bookstore.domain.BookRepository;
-import fi.haagahelia.okt.Bookstore.model.Book;
+import fi.haagahelia.okt.Bookstore.domain.Book;
 
 @SpringBootApplication
 public class BookstoreApplication {

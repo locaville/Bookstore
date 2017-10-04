@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import fi.haagahelia.okt.Bookstore.model.Book;
+import fi.haagahelia.okt.Bookstore.domain.Book;
 
 public interface BookRepository extends CrudRepository<Book, Long>{
 	
