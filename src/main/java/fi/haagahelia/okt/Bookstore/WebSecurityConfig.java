@@ -7,11 +7,15 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import fi.haagahelia.okt.Bookstore.web.UserDetailServiceImpl;
 
 @Configuration
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	private UserDetailServiceImpl userDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -27,18 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.logout()
 				.permitAll();
-		//http.csrf().disable();
 				
 	}
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-				.withUser("user").password("password").roles("USER");
-		auth
-			.inMemoryAuthentication()
-				.withUser("admin").password("password").roles("ADMIN");
+		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 		
 	}
 

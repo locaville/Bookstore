@@ -58,5 +58,10 @@ public class BookController {
 		return "login";
 	}
 	
+	@RequestMapping(value="/")
+	public String redirect() {
+		return "login";
+	}
+	
 
 }
